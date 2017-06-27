@@ -1,4 +1,4 @@
-drop table CDDates;
+drop table CDProjectNumbers;
 create table CDProjectNumbers (ProjectNumber int,	ProjectName varchar(75));
 
 insert into CDProjectNumbers values (14362,'Matrix NRE Busware') ;
