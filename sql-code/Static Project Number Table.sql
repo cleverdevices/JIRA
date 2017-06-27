@@ -26,3 +26,4 @@ insert into CDProjectNumbers values (10200,'CRS') ;
 insert into CDProjectNumbers values (10291,'AVMA') ;
 insert into CDProjectNumbers values (10692,'ACE') ;
 insert into CDProjectNumbers values (12191,'CleverWare') ;
+insert into CDProjectNumbers values (10027,'DCC') ;
