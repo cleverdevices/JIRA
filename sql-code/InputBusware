@@ -1,0 +1,14 @@
+CREATE DEFINER=`readonly`@`%` PROCEDURE `InputBusware`()
+BEGIN
+	call updateInput() ;
+    
+drop table if exists BuswareInput ;
+create table BuswareInput    
+    
+    Select middleInput.* ,
+
+case when middleInput.Ticket_Closed = 1 then 0 else (case when (middleInput.Closed_Story_Points + middleinput.Remaining_Story_Points = 0) then middleinput.Proposal_or_NRE_Hours else (case when (middleinput.Closed_Story_Points + middleinput.Remaining_Story_Points) > middleinput.Proposal_or_NRE_Hours then middleinput.Remaining_Story_Points else (middleinput.Proposal_or_NRE_Hours - middleinput.Closed_Story_Points) end) end) end as Hours_to_Use
+
+from middleInput ;
+
+END
