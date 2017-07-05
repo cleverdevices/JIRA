@@ -1,0 +1,9 @@
+CREATE DEFINER=`readonly`@`%` FUNCTION `CDdateDiffFunction`(start_date date, end_date date) RETURNS int(11)
+BEGIN
+declare num_days int;
+	Select (count(*) - 1) into num_days from CDDates 
+	where calendar_date between start_date and end_date and trading_day_flag='Y' and holiday_flag='N';
+
+
+RETURN num_days;
+END
