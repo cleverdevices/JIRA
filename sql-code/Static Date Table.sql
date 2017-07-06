@@ -1,4 +1,4 @@
-drop table CDDates;
+drop table if exists CDDates;
 create table CDDates (calendar_date datetime,	trading_day_flag varchar(1),	holiday_flag varchar(1));
 
 insert into CDDates values ('2017-01-01','N','N') ;
