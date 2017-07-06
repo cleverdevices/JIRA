@@ -1,4 +1,4 @@
-drop table JiraLinkTypes;
+drop table if exists JiraLinkTypes;
 create table JiraLinkTypes (Link_ID int, jira_subtask_link varchar(100), jira_subtask_inward varchar(100), jira_subtask_outward varchar(100), jira_subtask varchar(100));
 
 insert into JiraLinkTypes values (10010,'Existing Issue','Reported By','Exists In', NULL) ;
