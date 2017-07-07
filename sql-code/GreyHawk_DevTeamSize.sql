@@ -2,8 +2,20 @@ CREATE DEFINER=`readonly`@`%` PROCEDURE `GreyHawk_DevTeamSize`()
 BEGIN
 declare num_days int;
 
+call WorkDays();
 call GreyHawk_Input();
 call GreyHawk_tblVersions();
+
+call GreyHawk_EpicUpdate();
+
+#Create Table from new query and join values from static table
+DROP TABLE IF EXISTS GreyHawk_EpicUpdateLink;
+Create Table GreyHawk_EpicUpdateLink 
+
+
+Select GreyHawk_EpicUpdateTable.*, CDGreyHawkteamvelocity.storyHours, case when issue_status = 1 then 1 else 0 end as column1  from GreyHawk_EpicUpdateTable
+ join CDGreyHawkteamvelocity 
+on GreyHawk_EpicUpdateTable.Team = CDGreyHawkteamvelocity.team and GreyHawk_EpicUpdateTable.`Story Points` = CDGreyHawkteamvelocity.points ;
 
 drop table if exists GreyHawk_DeveloperTeamSize;
 create table GreyHawk_DeveloperTeamSize
