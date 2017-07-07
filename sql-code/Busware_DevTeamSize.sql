@@ -2,8 +2,20 @@ CREATE DEFINER=`readonly`@`%` PROCEDURE `Busware_DevTeamSize`()
 BEGIN
 declare num_days int;
 
-call Busware_tblVersions();
+call WorkDays();
 call Busware_Input();
+call Busware_tblVersions();
+
+call Busware_EpicUpdate();
+
+#Create Table from new query and join values from static table
+DROP TABLE IF EXISTS Busware_EpicUpdateLink;
+Create Table Busware_EpicUpdateLink 
+
+
+Select Busware_EpicUpdateTable.*, cdbuswareteamvelocity.storyHours, case when issue_status = 1 then 1 else 0 end as column1  from Busware_EpicUpdateTable
+ join cdbuswareteamvelocity 
+on Busware_EpicUpdateTable.Team = cdbuswareteamvelocity.team and Busware_EpicUpdateTable.`Story Points` = cdbuswareteamvelocity.points ;
 
 drop table if exists Busware_DeveloperTeamSize;
 create table Busware_DeveloperTeamSize
