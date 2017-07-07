@@ -2,8 +2,20 @@ CREATE DEFINER=`readonly`@`%` PROCEDURE `SmartYard_DevTeamSize`()
 BEGIN
 declare num_days int;
 
+call WorkDays();
 call SmartYard_Input();
 call SmartYard_tblVersions();
+
+call SmartYard_EpicUpdate();
+
+#Create Table from new query and join values from static table
+DROP TABLE IF EXISTS SmartYard_EpicUpdateLink;
+Create Table SmartYard_EpicUpdateLink 
+
+
+Select SmartYard_EpicUpdateTable.*, CDSmartYardteamvelocity.storyHours, case when issue_status = 1 then 1 else 0 end as column1  from SmartYard_EpicUpdateTable
+ join CDSmartYardteamvelocity 
+on SmartYard_EpicUpdateTable.Team = CDSmartYardteamvelocity.team and SmartYard_EpicUpdateTable.`Story Points` = CDSmartYardteamvelocity.points ;
 
 drop table if exists SmartYard_DeveloperTeamSize;
 create table SmartYard_DeveloperTeamSize
