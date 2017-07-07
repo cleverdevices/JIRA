@@ -402,5 +402,7 @@ group by
   ReleaseDate,
   StartDate,
   PROJECT.pkey;
+  
+  select * from CleverWare_Sheet2Table;
 
 END
