@@ -2,8 +2,21 @@ CREATE DEFINER=`readonly`@`%` PROCEDURE `CAD_DevTeamSize`()
 BEGIN
 declare num_days int;
 
+
+call WorkDays();
 call CAD_Input();
 call CAD_tblVersions();
+
+call CAD_EpicUpdate();
+
+#Create Table from new query and join values from static table
+DROP TABLE IF EXISTS CAD_EpicUpdateLink;
+Create Table CAD_EpicUpdateLink 
+
+
+Select CAD_EpicUpdateTable.*, CDCADteamvelocity.storyHours, case when issue_status = 1 then 1 else 0 end as column1  from CAD_EpicUpdateTable
+ join CDCADteamvelocity 
+on CAD_EpicUpdateTable.Team = CDCADteamvelocity.team and CAD_EpicUpdateTable.`Story Points` = CDCADteamvelocity.points ;
 
 drop table if exists CAD_DeveloperTeamSize;
 create table CAD_DeveloperTeamSize
