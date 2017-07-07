@@ -2,8 +2,20 @@ CREATE DEFINER=`readonly`@`%` PROCEDURE `CleverReports_DevTeamSize`()
 BEGIN
 declare num_days int;
 
+call WorkDays();
 call CleverReports_Input();
 call CleverReports_tblVersions();
+
+call CleverReports_EpicUpdate();
+
+#Create Table from new query and join values from static table
+DROP TABLE IF EXISTS CleverReports_EpicUpdateLink;
+Create Table CleverReports_EpicUpdateLink 
+
+
+Select CleverReports_EpicUpdateTable.*, CDCleverReportsteamvelocity.storyHours, case when issue_status = 1 then 1 else 0 end as column1  from CleverReports_EpicUpdateTable
+ join CDCleverReportsteamvelocity 
+on CleverReports_EpicUpdateTable.Team = CDCleverReportsteamvelocity.team and CleverReports_EpicUpdateTable.`Story Points` = CDCleverReportsteamvelocity.points ;
 
 drop table if exists CleverReports_DeveloperTeamSize;
 create table CleverReports_DeveloperTeamSize
