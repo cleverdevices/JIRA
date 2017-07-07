@@ -405,5 +405,7 @@ group by
   ReleaseDate,
   StartDate,
   PROJECT.pkey;
+  
+  select * from CleverReports_Sheet2Table;
 
 END
