@@ -1,0 +1,14 @@
+drop table if exists Summary1;
+create table Summary1
+
+select CDRollUp_Projects.*, 
+Proposal_Hours_JIRA_Integrated.Sum_of_Proposal_Hours as Hours, timestampdiff(month, CDRollUp_Projects.start_date, CDRollUp_Projects.end_date) + 1 as Months,
+round(Proposal_Hours_JIRA_Integrated.Sum_of_Proposal_Hours/(timestampdiff(month, CDRollUp_Projects.start_date, CDRollUp_Projects.end_date) + 1)/121.333,4) as R_per_Month
+
+
+
+from CDRollUp_Projects
+
+left join Proposal_Hours_JIRA_Integrated on CDRollUp_Projects.Project = Proposal_Hours_JIRA_Integrated.Customer;
+
+select * from Summary1
