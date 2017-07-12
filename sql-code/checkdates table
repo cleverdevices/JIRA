@@ -1,0 +1,8 @@
+drop table if exists checkdates;
+create table checkdates
+
+select CDMonthList.*, Summary1.Project, case when CDMonthList.dates between Summary1.start_date and Summary1.end_date then Summary1.R_per_Month else '-' end as test
+
+from CDMonthList, Summary1;
+
+select * from checkdates
