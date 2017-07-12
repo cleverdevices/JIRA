@@ -1,0 +1,7 @@
+drop table if exists Proposal_Hours_JIRA_Integrated;
+create table Proposal_Hours_JIRA_Integrated
+
+select Combined_Tasks_JIRA_Integrated.customer as Customer, sum(Combined_Tasks_JIRA_Integrated.Proposal_Hours) as Sum_of_Proposal_Hours, sum(Combined_Tasks_JIRA_Integrated.Remaining_NRE_Development) as Sum_of_Remaining_NRE
+from Combined_Tasks_JIRA_Integrated group by Combined_Tasks_JIRA_Integrated.customer;
+
+select * from Proposal_Hours_JIRA_Integrated
