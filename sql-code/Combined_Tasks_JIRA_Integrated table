@@ -1,0 +1,65 @@
+drop table if exists Combined_Tasks_JIRA_Integrated;
+create table Combined_Tasks_JIRA_Integrated
+
+select avm_inputtable.*, case when avm_inputtable.Type_of_Work = 'Proposal' then avm_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when avm_inputtable.Type_of_Work = 'Development' then avm_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from avm_inputtable
+
+union 
+
+select bustime_inputtable.*, case when bustime_inputtable.Type_of_Work = 'Proposal' then bustime_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when bustime_inputtable.Type_of_Work = 'Development' then bustime_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from bustime_inputtable
+
+union 
+
+select busware_inputtable.*, case when busware_inputtable.Type_of_Work = 'Proposal' then busware_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when busware_inputtable.Type_of_Work = 'Development' then busware_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from busware_inputtable
+
+union 
+
+select CAD_inputtable.*, case when CAD_inputtable.Type_of_Work = 'Proposal' then CAD_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when CAD_inputtable.Type_of_Work = 'Development' then CAD_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from CAD_inputtable
+
+union 
+
+select CleverReports_inputtable.*, case when CleverReports_inputtable.Type_of_Work = 'Proposal' then CleverReports_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when CleverReports_inputtable.Type_of_Work = 'Development' then CleverReports_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from CleverReports_inputtable
+
+union 
+
+select CleverWare_inputtable.*, case when CleverWare_inputtable.Type_of_Work = 'Proposal' then CleverWare_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when CleverWare_inputtable.Type_of_Work = 'Development' then CleverWare_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from CleverWare_inputtable
+
+union 
+
+select GreyHawk_inputtable.*, case when GreyHawk_inputtable.Type_of_Work = 'Proposal' then GreyHawk_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when GreyHawk_inputtable.Type_of_Work = 'Development' then GreyHawk_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from GreyHawk_inputtable
+
+union 
+
+select SmartYard_inputtable.*, case when SmartYard_inputtable.Type_of_Work = 'Proposal' then SmartYard_inputtable.Hours_to_Use  else 0 end as Proposal_Hours,
+case when SmartYard_inputtable.Type_of_Work = 'Development' then SmartYard_inputtable.Hours_to_Use  else 0 end as Remaining_NRE_Development
+
+from SmartYard_inputtable;
+
+
+select * from Combined_Tasks_JIRA_Integrated
+
+
+
+
+
+
