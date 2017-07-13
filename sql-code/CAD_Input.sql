@@ -11,4 +11,7 @@ ifnull(case when CAD_middleInput.Ticket_Closed = 1 then 0 else (case when (CAD_m
 
 from CAD_middleInput ;
 
+select CAD_InputTable.*, workMatch.releaseRow as Release_Actual from CAD_InputTable
+left join workMatch on CAD_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
