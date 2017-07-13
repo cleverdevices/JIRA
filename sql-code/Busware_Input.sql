@@ -11,4 +11,7 @@ ifnull(case when Busware_middleInput.Ticket_Closed = 1 then 0 else (case when (B
 
 from Busware_middleInput ;
 
+select Busware_InputTable.*, workMatch.releaseRow as Release_Actual from Busware_InputTable
+left join workMatch on Busware_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
