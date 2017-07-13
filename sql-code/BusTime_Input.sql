@@ -7,11 +7,11 @@ create table BusTime_InputTable
     
     Select BusTime_middleInput.* ,
 
-ifnull(case when BusTime_middleInput.Ticket_Closed = 1 then 0 else (case when (BusTime_middleInput.Closed_Story_Points + BusTime_middleInput.Remaining_Story_Points = 0) then BusTime_middleInput.Proposal_or_NRE_Hours else (case when (BusTime_middleInput.Closed_Story_Points + BusTime_middleInput.Remaining_Story_Points) > BusTime_middleInput.Proposal_or_NRE_Hours then BusTime_middleInput.Remaining_Story_Points else (BusTime_middleInput.Proposal_or_NRE_Hours - BusTime_middleInput.Closed_Story_Points) end) end) end, 0) as Hours_to_Use
+ifnull(case when BusTime_middleInput.Ticket_Closed = 1 then 0 else (case when (BusTime_middleInput.Closed_Story_Points + BusTime_middleInput.Remaining_Story_Points = 0) then BusTime_middleInput.Proposal_or_NRE_Hours else (case when (BusTime_middleInput.Closed_Story_Points + BusTime_middleInput.Remaining_Story_Points) > BusTime_middleInput.Proposal_or_NRE_Hours then BusTime_middleInput.Remaining_Story_Points else (BusTime_middleInput.Proposal_or_NRE_Hours - BusTime_middleInput.Closed_Story_Points) end) end) end, 0) as Hours_to_Use,
+workMatch.releaseRow as Release_Actual
 
-from BusTime_middleInput ;
 
-select BusTime_InputTable.*, workMatch.releaseRow as Release_Actual from BusTime_InputTable
-left join workMatch on BusTime_InputTable.ReleaseDate = workMatch.calendar_date;
+from BusTime_middleInput 
+left join workMatch on BusTime_middleInput.ReleaseDate = workMatch.calendar_date;
 
 END
