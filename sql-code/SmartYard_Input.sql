@@ -11,4 +11,7 @@ ifnull(case when SmartYard_middleInput.Ticket_Closed = 1 then 0 else (case when 
 
 from SmartYard_middleInput ;
 
+select SmartYard_InputTable.*, workMatch.releaseRow as Release_Actual from SmartYard_InputTable
+left join workMatch on SmartYard_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
