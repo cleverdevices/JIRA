@@ -11,4 +11,7 @@ ifnull(case when GreyHawk_middleInput.Ticket_Closed = 1 then 0 else (case when (
 
 from GreyHawk_middleInput ;
 
+select GreyHawk_InputTable.*, workMatch.releaseRow as Release_Actual from GreyHawk_InputTable
+left join workMatch on GreyHawk_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
