@@ -11,4 +11,7 @@ ifnull(case when AVM_middleInput.Ticket_Closed = 1 then 0 else (case when (AVM_m
 
 from AVM_middleInput ;
 
+select AVM_InputTable.*, workMatch.releaseRow as Release_Actual from AVM_InputTable
+left join workMatch on AVM_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
