@@ -11,4 +11,7 @@ ifnull(case when BusTime_middleInput.Ticket_Closed = 1 then 0 else (case when (B
 
 from BusTime_middleInput ;
 
+select BusTime_InputTable.*, workMatch.releaseRow as Release_Actual from BusTime_InputTable
+left join workMatch on BusTime_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
