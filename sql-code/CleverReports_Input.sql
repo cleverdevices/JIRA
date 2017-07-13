@@ -11,4 +11,7 @@ ifnull(case when CleverReports_middleInput.Ticket_Closed = 1 then 0 else (case w
 
 from CleverReports_middleInput ;
 
+select CleverReports_InputTable.*, workMatch.releaseRow as Release_Actual from CleverReports_InputTable
+left join workMatch on CleverReports_InputTable.ReleaseDate = workMatch.calendar_date;
+
 END
